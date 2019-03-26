@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <link rel="stylesheet" href="style.css">
+        <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+        <link rel="icon" href="/favicon.ico" type="image/x-icon">
+        <title>Bull and Cows</title>
+   </head>
+    <body>
+        <div class="smScreenText">
+            <span class="text-center">This website is only for Desktop.</span>
+        </div>
+        <div class="p-5">
+            <div class="body">
+                <div class="row m-2">
+                    <div class="col" id="playBoard">
+                        <div class="header">
+                            <h1 class="text-center title mt-5">Bull and Cows</h1>
+                        
+                            <div class="row d-flex mt-5 justify-content-center">
+                                <p class="mb-0 my-auto">Hit the </p>
+                                <div class="btn btn-primary mx-2" id="startBtn">Start</div>
+                                <p class="mb-0 my-auto">button!</p>
+                            </div>
+                            <div class="row mt-3 justify-content-center">
+                                <p class="mb-0 my-auto">If you haven't played this game,<br/></p>
+                                <p class="mb-0 mt-1">                                
+                                    <button type="button" class="btn btn-warning" data-toggle="popover" title="About this game" data-content="This game is played with 4 digits, computer will be generating 4 digits secret number. you have to guess this secret number. If the matching digits are in their right positions, they are 'bulls', if in different positions, they are 'cows'. Get it? Let's get started!">
+                                    Check
+                                    </button>
+                                    this out!
+                                </p>
+                            </div>
+                            <div class="row mt-3 mb-5 justify-content-center">
+                                <p class="mb-0 my-auto">If you want to stop playing,<br/></p>
+                                <p class="mb-0 mt-1">
+                                    click                                
+                                    <button class="btn btn-danger mx-2" id="resetBtn">Reset</button>
+                                    button.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="stopwatch text-center m-5 py-5">
+                            <span id="min">00</span>:<span id="sec">00</span>
+                        </div>
+                        
+                        <div class="border m-3 p-5">
+                            <h4 class="text-center mb-4">Play Board</h3>
+                            <div class="row justify-content-center">
+                                <div class="form-group m-1">
+                                    <select class="form-control form-control-lg custom-form" id="firstDigit">
+                                    <option>0</option>
+                                    <option>1</option>
+                                    <option>2</option>
+                                    <option>3</option>
+                                    <option>4</option>
+                                    <option>5</option>
+                                    <option>6</option>
+                                    <option>7</option>
+                                    <option>8</option>
+                                    <option>9</option>
+                                    </select>
+                                </div>
+                                <div class="form-group m-1">
+                                    <select class="form-control form-control-lg custom-form" id="secondDigit">
+                                    <option>0</option>
+                                    <option>1</option>
+                                    <option>2</option>
+                                    <option>3</option>
+                                    <option>4</option>
+                                    <option>5</option>
+                                    <option>6</option>
+                                    <option>7</option>
+                                    <option>8</option>
+                                    <option>9</option>
+                                    </select>
+                                </div>
+                                <div class="form-group m-1">
+                                    <select class="form-control form-control-lg custom-form" id="thirdDigit">
+                                    <option>0</option>
+                                    <option>1</option>
+                                    <option>2</option>
+                                    <option>3</option>
+                                    <option>4</option>
+                                    <option>5</option>
+                                    <option>6</option>
+                                    <option>7</option>
+                                    <option>8</option>
+                                    <option>9</option>
+                                    </select>
+                                </div>
+                                <div class="form-group m-1">
+                                    <select class="form-control form-control-lg custom-form" id="fourthDigit">
+                                    <option>0</option>
+                                    <option>1</option>
+                                    <option>2</option>
+                                    <option>3</option>
+                                    <option>4</option>
+                                    <option>5</option>
+                                    <option>6</option>
+                                    <option>7</option>
+                                    <option>8</option>
+                                    <option>9</option>
+                                    </select>
+                                </div>
+                                <div class="btn btn-primary m-1" id="setNum">Set</div>
+                            </div>  
+                        </div>
+                    </div>
+
+                    <div class="col border m-3 p-4" id="historyBoard">
+                        <h4 class="text-center">History Board</h4>
+                        <div class="row text-center mt-4">
+                            <div class="col">
+                                <h5>Your Number</h5>
+                                <ul class="pl-0" id="userNum">
+                                    
+                                </ul>
+                            </div>
+                            <div class="col">
+                                <h5>Result</h5>
+                                <ul class="pl-0" id="userResult">
+   
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+        <script src="app.js"></script>
+    </body>
+</html>
