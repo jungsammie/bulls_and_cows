@@ -1,40 +1,45 @@
 $( document ).ready(function() {
-    var count = 0;
 
     $(function () {
         $('[data-toggle="popover"]').popover();
     });
 
-    $( "#startBtn" ).click(function() {
-        resetDigits();
-        var generatedRand = gameStart();
-        timer = self.setInterval(function countUp() {
-            count++;
-            var min = Math.floor(count / 60);
-            $("#min").html (twoDigits(min));
-            $("#sec").html(twoDigits(count - (60 * min)));
-        }, 1000);    
-
-        $( "#setNum" ).click(function() {
-            userInput = getUserInput();
-            if(userInput == -1) {
-                alert("Cannot input same digit! Please input new digits.");
-            }
-            else {
-                var result = compareDigits(generatedRand, userInput);
-                if(result == 1) {
-                    if (confirm('You Win!!! ')) {
-                        location.reload();
-                    }
-                }
-            }
-        });
-    }); 
-
     $("#resetBtn").click(function() {
         location.reload();
     });
+
+    var messageBody = document.querySelector('#historyBoard');
+    messageBody.scrollTop = messageBody.scrollHeight - messageBody.clientHeight;
 });
+
+function startGame() {
+    $("#startBtn").prop("disabled", true);
+    var count = 0;
+
+    resetDigits();
+    var generatedRand = gameStart();
+    timer = self.setInterval(function countUp() {
+        count++;
+        var min = Math.floor(count / 60);
+        $("#min").html (twoDigits(min));
+        $("#sec").html(twoDigits(count - (60 * min)));
+    }, 1000);    
+
+    $( "#setNum" ).click(function() {
+        userInput = getUserInput();
+        if(userInput == -1) {
+            alert("Cannot input same digit! Please input new digits.");
+        }
+        else {
+            var result = compareDigits(generatedRand, userInput);
+            if(result == 1) {
+                if (confirm('You Win!!! ')) {
+                    location.reload();
+                }
+            }
+        }
+    });
+}
 
 function twoDigits(number) {
     return (number < 10 ? '0' : '') + number;
@@ -115,6 +120,10 @@ function compareDigits(randNum, userInput) {
     else {
         $('#userNum').append('<li>'+userInput[0]+userInput[1]+userInput[2]+userInput[3]+'</li>');
         $('#userResult').append('<li>'+bulls+"B "+cows+"C"+'</li>');
+
+        var messageBody = document.querySelector('#historyBoard');
+        messageBody.scrollTop = messageBody.scrollHeight - messageBody.clientHeight;
+        
         return -1;
     }
 }
