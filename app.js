@@ -7,9 +7,6 @@ $( document ).ready(function() {
     $("#resetBtn").click(function() {
         location.reload();
     });
-
-    var messageBody = document.querySelector('#historyBoard');
-    messageBody.scrollTop = messageBody.scrollHeight - messageBody.clientHeight;
 });
 
 function startGame() {
@@ -113,17 +110,17 @@ function compareDigits(randNum, userInput) {
     }
 
     if(bulls == 4) {
-        //$('#userNum').append('<li>'+userInput[0]+userInput[1]+userInput[2]+userInput[3]+'</li>');
-        //$('#userResult').append('<li>4B</li>')
+
         return 1;
     }
     else {
         $('#userNum').append('<li>'+userInput[0]+userInput[1]+userInput[2]+userInput[3]+'</li>');
         $('#userResult').append('<li>'+bulls+"B "+cows+"C"+'</li>');
 
+        //Keep the scroll bar at the bottom of the page
         var messageBody = document.querySelector('#historyBoard');
         messageBody.scrollTop = messageBody.scrollHeight - messageBody.clientHeight;
-        
+
         return -1;
     }
 }
